@@ -1,0 +1,26 @@
+package com.mindtree.employee.Employee.service;
+
+import java.util.List;
+
+import com.mindtree.employee.Employee.entity.Employee;
+import com.mindtree.employee.Employee.exception.EmployeeServiceException;
+
+public interface EmployeeService {
+
+	Employee saveEmployee(Employee employee);
+
+	List<Employee> saveMultipleEmployees(List<Employee> employeeList);
+
+	Employee updateEmployee(int id, Employee employee) throws EmployeeServiceException;
+
+	void deleteEmployee(int id);
+
+	Employee getEmployeeById(int id) throws EmployeeServiceException;
+
+	List<Employee> getAllEmployee();
+
+	List<Employee> getByName(String name) throws EmployeeServiceException;
+
+	List<Employee> getEmployeeByNameandLocation(String loc) throws EmployeeServiceException;
+
+}

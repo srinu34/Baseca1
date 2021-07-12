@@ -1,0 +1,79 @@
+package com.mindtree.javafeature.client;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.OptionalDouble;
+import java.util.Scanner;
+import java.util.stream.Collectors;
+
+import com.mindtree.javafeature.model.*;
+import com.mindtree.javafeature.service.OwnInterface;
+public class Application {
+
+	public static void main(String[] args) {
+		List<Product> product=new ArrayList<Product>();
+		Scanner scanner=new Scanner(System.in);
+		System.out.println("Enter the number of list");
+		int number=scanner.nextInt();
+		for(int i=0;i<number;i++)
+		{
+			System.out.println("enter the product name:");
+			scanner.nextLine();
+		    String name=scanner.nextLine();
+		    System.out.println("enter the Product Price:");
+		    int price=scanner.nextInt();
+		    System.out.println("enter the Product quantity:");
+		    int quantity=scanner.nextInt();
+		    product.add(new Product(i,name,price,quantity));
+		    
+		}
+		System.out.println("Enter the Upper price limit");
+		int upLimit=scanner.nextInt();
+		System.out.println("Enter the Lower Price Limit");
+		int lowLimit=scanner.nextInt();
+		List<Product> result=product.stream().filter(i->i.getProductPrice()>=lowLimit&&i.getProductPrice()<=upLimit).collect(Collectors.toList());
+		for(Product tempProduct:result)
+		{
+			System.out.println("\nProductID :"+tempProduct.getId()+"\nProductName :"+tempProduct.getProductName()+"\nProductPrice :"+tempProduct.getProductPrice()+" \nProductQuantity :"+tempProduct.getProductStock());
+		}
+		System.out.println("Enter the Upper quanity limit");
+		int upQuantityLimit=scanner.nextInt();
+		System.out.println("Enter the Lower quantity Limit");
+		int lowQuantityLimit=scanner.nextInt();
+		List<Product> resultQuantity=product.stream().filter(i->i.getProductStock()>=lowQuantityLimit&&i.getProductStock()<=upQuantityLimit).collect(Collectors.toList());
+
+		for(Product tempProduct:resultQuantity)
+		{
+			System.out.println("\nProductID :"+tempProduct.getId()+"\nProductName :"+tempProduct.getProductName()+"\nProductPrice :"+tempProduct.getProductPrice()+" \nProductQuantity :"+tempProduct.getProductStock());
+		}
+		
+		List<Item>item=new ArrayList<Item>();
+		for(Product tempProduct:product)
+		{
+		    item.add(new Item(tempProduct.getId(),tempProduct.getProductName(),tempProduct.getProductPrice()));
+		}
+		int count=(int)item.stream().map((index)->index.getId()).count();
+		
+		double res=item.stream().mapToDouble((a)->a.getItemprice()).reduce(0, (val1,val2)->val1+val2);
+		System.out.println(res/count);
+		
+		OptionalDouble average=item.stream().mapToInt(Item::getItemprice).average();
+		System.out.println(average);
+		   
+		OwnInterface interfaces= (Item i) -> {System.out.println("name :" + i.getItemname() +" "+"Price :"+i.getItemprice());};
+
+		Application.showItem(interfaces, item);
+
+
+	}
+
+
+	private static void showItem(OwnInterface interfaces,List< Item> item) {
+		// TODO Auto-generated method stub
+		for(Item i:item)
+		{
+		interfaces.print(i);
+		}
+	}
+
+}

@@ -1,0 +1,115 @@
+package com.mindtree.employee.Employee.controller;
+
+import java.util.List;
+import java.util.Map;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.mindtree.employee.Employee.entity.Address;
+import com.mindtree.employee.Employee.entity.Employee;
+import com.mindtree.employee.Employee.exception.EmployeeControllerException;
+import com.mindtree.employee.Employee.exception.EmployeeServiceException;
+import com.mindtree.employee.Employee.service.EmployeeService;
+
+@RestController
+
+public class EmployeeController {
+
+	@Autowired
+	private EmployeeService service;
+	
+	@PostMapping(value = "/add")
+	public ResponseEntity<Employee> addEmployee(@RequestHeader(name = "Content-type-Header",required = true) String myHeader, @Valid @RequestBody Employee employee) {
+		HttpHeaders responseHeader=new HttpHeaders();
+		responseHeader.set("Content-type-Header",myHeader);
+		Employee emp=service.saveEmployee(employee);
+		return ResponseEntity.accepted().headers(responseHeader).body(emp);
+		
+	}
+	
+	
+	
+	@PostMapping(value = "/addemployees",headers="Accept=application/xml")
+	public ResponseEntity<List<Employee>> addEmployees(@RequestHeader(name="Content-type-Header",required = false) String myHeader,@RequestHeader(name = "Location",required = true) String location, @Valid @RequestBody List<Employee> employeeList) {
+		HttpHeaders responseHeaders=new HttpHeaders();
+		responseHeaders.add("Content-type-Header",myHeader );
+		responseHeaders.add("Location","india");
+		List<Employee> list=service.saveMultipleEmployees(employeeList);
+		return  ResponseEntity.accepted().headers(responseHeaders).body(list);
+
+	}
+	
+	@PutMapping(value = "/update/{id}")
+	public ResponseEntity<String> update(@PathVariable int id,@RequestBody Employee employee) throws EmployeeControllerException{
+		try {
+			service.updateEmployee(id, employee);
+		} catch (EmployeeServiceException e) {
+			throw new EmployeeControllerException(e.getMessage());
+		}
+		return new ResponseEntity<String>("Updated Successfully",HttpStatus.OK);
+
+	}
+	
+	@DeleteMapping(value = "/delete/{id}")
+	public ResponseEntity<String> delete(@PathVariable int id) {
+		service.deleteEmployee(id);
+		return new ResponseEntity<String>("Deleted Successfully",HttpStatus.OK);
+
+	}
+	
+	@GetMapping(value = "/getemployee/{id}")
+	public ResponseEntity<Employee> getEmployeeById(@PathVariable int id) throws EmployeeControllerException{
+		Employee emp;
+		try {
+			emp = service.getEmployeeById(id);
+		} catch (EmployeeServiceException e) {
+			throw new EmployeeControllerException(e.getMessage());
+		}
+		return new ResponseEntity<Employee>(emp,HttpStatus.OK);
+
+	}
+	
+	@GetMapping(value = "/getallemployee")
+	public ResponseEntity<List<Employee>> getAllEmployee() {
+		List<Employee> emplist=service.getAllEmployee();
+		return new ResponseEntity<List<Employee>>(emplist,HttpStatus.OK);
+		
+	}
+	
+	@GetMapping(value = "/getbyname/{name}")
+	public ResponseEntity<List<Employee>> getEmpByName(@PathVariable String name) throws EmployeeControllerException{
+		List<Employee> emplist;
+		try {
+			emplist = service.getByName(name);
+		} catch (EmployeeServiceException e) {
+			throw new EmployeeControllerException(e.getMessage());
+		}
+		return new ResponseEntity<List<Employee>>(emplist,HttpStatus.OK);
+		
+	}
+	
+	@GetMapping(value="/getemployeebyNameAndLocation/{location}")
+	public ResponseEntity<List<Employee>> deleteEmpAddress(@PathVariable String location ) throws EmployeeControllerException{
+		
+			List<Employee> e;
+			try {
+				e = service.getEmployeeByNameandLocation(location);
+			} catch (EmployeeServiceException e1) {
+			throw new EmployeeControllerException(e1.getMessage());
+			}
+		return new ResponseEntity<List<Employee>>(e,HttpStatus.OK);
+	}
+}

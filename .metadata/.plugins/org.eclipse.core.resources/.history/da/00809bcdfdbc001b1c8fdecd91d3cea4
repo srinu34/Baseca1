@@ -1,0 +1,19 @@
+package com.example;
+
+public class Operation {
+	public static void main(String[] args) {
+		int i=10;
+		int j=20;
+		int k=0;
+		 k = add(i,j);
+		int y=k+j;
+		
+		System.out.println();
+	}
+
+	private static int add(int a,int b) {
+		int c = a + b;
+		return c;
+	}
+
+}

@@ -1,0 +1,106 @@
+package com.mindtree.employee.Employee.service;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Service;
+
+@Service
+public class EmployeeServiceImpl implements EmployeeService {
+
+	@Autowired
+	private EmployeeRepository repository;
+
+	@Override
+	public Employee saveEmployee(Employee employee) {
+		return repository.save(employee);
+	}
+
+	@Override
+	public List<Employee> saveMultipleEmployees(List<Employee> employeeList) {
+		return repository.saveAll(employeeList);
+	}
+
+	@Override
+	@CachePut(cacheNames = "Employee",key = "#id")
+	public Employee updateEmployee(int id, Employee employee) throws EmployeeServiceException {
+		Employee empl = null;
+		try {
+			empl = repository.findById(id).orElse(null);
+			if (empl == null) {
+				throw new IdNotFoundException("No Such Id Exception...");
+			}
+			empl.setName(employee.getName());
+			empl.setAge(employee.getAge());
+			empl.setLocation(employee.getLocation());
+			empl.setSalary(employee.getSalary());
+			empl.setAddress(employee.getAddress());
+			repository.save(empl);
+
+		} catch (IdNotFoundException e) {
+			throw new EmployeeServiceException(e.getMessage());
+
+		}
+		return empl;
+	}
+
+	@Override
+	@CacheEvict(cacheNames = "Employee",key = "#id")
+	public void deleteEmployee(int id) {
+		repository.deleteById(id);
+	}
+
+	@Override
+	@Cacheable(cacheNames = "Employee",key = "#id")
+	public Employee getEmployeeById(int id) throws EmployeeServiceException {
+		Employee emp = null;
+		try {
+
+			emp = repository.findById(id).orElse(null);
+			if (emp == null) {
+				throw new IdNotFoundException("No Such Id Found...");
+			}
+		} catch (IdNotFoundException e) {
+			throw new EmployeeServiceException(e.getMessage());
+		}
+		return emp;
+
+	}
+
+	@Override
+	public List<Employee> getAllEmployee() {
+		return repository.findAll();
+
+	}
+
+	@Override
+	public List<Employee> getByName(String name) throws EmployeeServiceException{
+		List<Employee> emplis=repository.findByName(name);
+		try {
+		if(emplis.isEmpty()) {
+			throw new NameNotFoundException("No Name Found...");
+		}}catch(NameNotFoundException e) {
+			throw new EmployeeServiceException(e.getMessage());
+		}
+		return emplis;
+	}
+
+	@Override
+	public List<Employee> getEmployeeByNameandLocation(String loc) throws EmployeeServiceException {
+		List<Employee> e=repository.getEmployeeUsingNameAndLocation(loc);
+		try {
+		if(e.isEmpty()) {
+			throw new LocationNotFoundException("No Location Found...");
+		}}catch(LocationNotFoundException e1) {
+			throw new EmployeeServiceException(e1.getMessage());
+		}
+		return e;
+	}
+
+}
