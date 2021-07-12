@@ -1,0 +1,11 @@
+content_assist_lru_history=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><history maxLHS\="100" maxRHS\="10"><lhs name\="com.furnituremanagement.model.FurnitureShape"><rhs name\="com.furnituremanagement.model.FurnitureShape"/><rhs name\="com.furnituremanagement.model.CubeFurniture"/></lhs><lhs name\="com.furnituremanagement.model.CubeFurniture"><rhs name\="com.furnituremanagement.model.CubeFurniture"/></lhs><lhs name\="com.furnituremanagement.model.FurnitureStore"><rhs name\="com.furnituremanagement.model.FurnitureStore"/><rhs name\="com.furnituremanagement.model.CubeFurniture"/><rhs name\="com.furnituremanagement.model.RectangleFurniture"/><rhs name\="com.furnituremanagement.model.CylinderFurniture"/></lhs><lhs name\="com.furnituremanagement.model.RectangleFurniture"><rhs name\="com.furnituremanagement.model.RectangleFurniture"/></lhs><lhs name\="com.furnituremanagement.model.CylinderFurniture"><rhs name\="com.furnituremanagement.model.CylinderFurniture"/></lhs><lhs name\="java.util.Map"><rhs name\="java.util.TreeMap"/></lhs><lhs name\="com.shopingcart.model.Customer"><rhs name\="com.shopingcart.model.Customer"/></lhs><lhs name\="com.shopingcart.model.Products"><rhs name\="com.shopingcart.model.Products"/></lhs><lhs name\="java.lang.Number"><rhs name\="java.lang.Integer"/></lhs></history>
+content_assist_number_of_computers=12
+content_assist_proposals_background=255,255,255
+content_assist_proposals_foreground=0,0,0
+eclipse.preferences.version=1
+org.eclipse.jdt.internal.ui.navigator.layout=2
+org.eclipse.jdt.internal.ui.navigator.librariesnode=true
+org.eclipse.jdt.ui.formatterprofiles.version=21
+spelling_locale_initialized=true
+useAnnotationsPrefPage=true
+useQuickDiffPrefPage=true

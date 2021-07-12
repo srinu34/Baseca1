@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="com.userassets.model.Assets"/>
+    <fullyQualifiedTypeName name="com.sun.java_cup.internal.runtime.Scanner"/>
+    <fullyQualifiedTypeName name="com.furnituremanagement.service.AddDetails"/>
+    <fullyQualifiedTypeName name="com.inventorymanagement.model.Inventory"/>
+    <fullyQualifiedTypeName name="com.inventorymanagement.service.Adddetails"/>
+    <fullyQualifiedTypeName name="com.inventorymanagement.service.Display"/>
+    <fullyQualifiedTypeName name="com.inventorymanagement.service.Update"/>
+    <fullyQualifiedTypeName name="com.inventorymanagement.service.Displaycompared"/>
+    <fullyQualifiedTypeName name="com.inventorymanagement.service.Sortdetails"/>
+    <fullyQualifiedTypeName name="com.inventorymanagement.service.Displaysorted"/>
+    <fullyQualifiedTypeName name="com.inventorymanagement.service.Delete"/>
+    <fullyQualifiedTypeName name="com.furnituremanagement.model.FurnitureShape"/>
+    <fullyQualifiedTypeName name="com.furnituremanagement.service.Adddetails"/>
+    <fullyQualifiedTypeName name="com.furnituremanagement.service.Display"/>
+    <fullyQualifiedTypeName name="com.furnituremanagement.service.CalucalateVolume"/>
+    <fullyQualifiedTypeName name="com.furnituremanagement.service.FindMaxvolume"/>
+    <fullyQualifiedTypeName name="com.furnituremanagement.service.MaxDisplay"/>
+    <fullyQualifiedTypeName name="com.furnituremanagement.model.CubeFurniture"/>
+    <fullyQualifiedTypeName name="com.furnituremanagement.model.RectangleFurniture"/>
+    <fullyQualifiedTypeName name="com.furnituremanagement.model.FurnitureStore"/>
+    <fullyQualifiedTypeName name="com.furnituremanagement.model.CylinderFurniture"/>
+    <fullyQualifiedTypeName name="java.lang.Override"/>
+    <fullyQualifiedTypeName name="java.util.Comparator"/>
+    <fullyQualifiedTypeName name="java.lang.Comparable"/>
+    <fullyQualifiedTypeName name="java.util.Map"/>
+    <fullyQualifiedTypeName name="java.util.TreeMap"/>
+    <fullyQualifiedTypeName name="com.sun.tools.classfile.Opcode.Set"/>
+    <fullyQualifiedTypeName name="java.util.TreeSet"/>
+    <fullyQualifiedTypeName name="com.example.model.City"/>
+    <fullyQualifiedTypeName name="java.lang.Object"/>
+    <fullyQualifiedTypeName name="java.lang.Integer"/>
+    <fullyQualifiedTypeName name="com.shopingcart.model.Customer"/>
+    <fullyQualifiedTypeName name="com.shopingcart.model.Products"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+</qualifiedTypeNameHistroy>
